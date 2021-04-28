@@ -19,3 +19,12 @@ To delete all employees that have the full name of "Lazy Larry":
   DELETE FROM "Employees" WHERE "FullName" = 'Lazy Larry';
 To add a ParkingSpot column to the table as text that can store up to 10 characters:
   ALTER TABLE "Employees" ADD COLUMN "ParkingSpot" VARCHAR(10);
+To add a table named Departments with ID as a primary key, DepartmentName as text, and Building as text:
+  CREATE TABLE "Departments" ( "Id" SERIAL PRIMARY KEY, "DepartmentName" TEXT, "Building" TEXT );
+To add a Foreign key DepartmentID to Employees Table:
+  ALTER TABLE "Employees" ADD COLUMN "DepartmentID" INTEGER NULL REFERENCES "Departments" ("Id");
+To add a table named Products with Id as primary key, Price as float, Name as text, Description as text, QuantityInStock as int:
+  CREATE TABLE "Products" ( "Id" SERIAL PRIMARY KEY, "Price" FLOAT, "Name" TEXT, "Description" TEXT, "QuantityInStock" INT );
+To add a table named Orders with Id as primary key, OrderNumber as text, DatePlaced as date, and Email as text
+  CREATE TABLE "Orders" ( "Id" SERIAL PRIMARY KEY, "Order Number" TEXT, "DatePlaced" DATE, "Email" TEXT );
+To create 

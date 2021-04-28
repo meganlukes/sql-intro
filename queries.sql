@@ -27,4 +27,30 @@ To add a table named Products with Id as primary key, Price as float, Name as te
   CREATE TABLE "Products" ( "Id" SERIAL PRIMARY KEY, "Price" FLOAT, "Name" TEXT, "Description" TEXT, "QuantityInStock" INT );
 To add a table named Orders with Id as primary key, OrderNumber as text, DatePlaced as date, and Email as text
   CREATE TABLE "Orders" ( "Id" SERIAL PRIMARY KEY, "Order Number" TEXT, "DatePlaced" DATE, "Email" TEXT );
-To create 
+To insert new department:
+  INSERT INTO "Departments" ( "DepartmentName", "Building" ) VALUES ('Development', 'Main' );
+To insert new product:
+  INSERT INTO "Products" ( "Price", "Name", "Description", "QuantityInStock" ) VALUES ('99.99', 'Flowbee', 'Perfect for haircuts', '3' );
+To create table "ProductOrders" that will join products with orders and have an OrderQuantity INT:
+  CREATE TABLE "ProductOrders" ("Id" SERIAL PRIMARY KEY, "ProductID" INTEGER REFERENCES "Products" ("Id"), "OrderID" INTEGER REFERENCES "Orders" ("Id"), "OrderQuantity" INT );
+
+Create a new order:
+  INSERT INTO "Orders" ( "Order Number", "Email") VALUES ('x529', 'person@example.com');
+Add 3 widgets to order:
+  INSERT INTO "ProductOrders" ( "ProductID", "OrderID", "OrderQuantity" ) VALUES ( '1', '1', '3' );
+Add 2 Flowbees to order:
+  INSERT INTO "ProductOrders" ( "ProductID", "OrderID", "OrderQuantity" ) VALUES ( '2', '1', '2' );
+Return all employees that work in a specific building:
+  SELECT * FROM "Employees" JOIN "Departments" ON "Employees"."DepartmentID" = "Departments"."Id" WHERE "Departments"."Building" = 'North Side';
+
+  SELECT * FROM "Employees" JOIN "Departments" ON "Employees"."DepartmentID" = "Departments"."Id" WHERE "Departments"."Building" = 'East Side';
+
+  SELECT * FROM "Employees" JOIN "Departments" ON "Employees"."DepartmentID" = "Departments"."Id" WHERE "Departments"."Building" = 'Main';
+Return all orders that contain the product id of 2
+  SELECT "Orders"."Order Number", "Products"."Id" 
+  FROM "Orders" 
+  JOIN "ProductOrders" ON "ProductOrders"."OrderID" = "Orders"."Id"
+  JOIN "Products" ON "Products"."Id" = "ProductOrders"."ProductID" WHERE "Products"."Id" = '2';
+Find the quantity of Flowbee products from order X529
+  
+  

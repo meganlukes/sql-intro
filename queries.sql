@@ -52,5 +52,9 @@ Return all orders that contain the product id of 2
   JOIN "ProductOrders" ON "ProductOrders"."OrderID" = "Orders"."Id"
   JOIN "Products" ON "Products"."Id" = "ProductOrders"."ProductID" WHERE "Products"."Id" = '2';
 Find the quantity of Flowbee products from order X529
-  
+  SELECT "Orders"."OrderNumber", "Products"."Name", "ProductOrders"."OrderQuantity"
+  FROM "ProductOrders"
+  JOIN "Products" ON "Products"."Id" = "ProductOrders"."ProductId"
+  JOIN "Orders" ON "Orders"."Id" = "ProductOrders"."OrderId"
+  WHERE ("Products"."Name" = 'Flowbee');
   
